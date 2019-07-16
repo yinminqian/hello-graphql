@@ -1,6 +1,15 @@
 const express     = require('express');
 const graphqlHTTP = require('express-graphql');
 const schema      = require('./schema/schema');
+const mongoose    = require('mongoose');
+
+
+//链接数据库
+mongoose.connect('mongodb://localhost/graphql', { useNewUrlParser: true });
+
+mongoose.connection.once('open', () => {
+    console.log('connected to database');
+});
 
 const app = express();
 
